@@ -1,6 +1,8 @@
 #include <iostream>
 #include <map>
-#include "mysql_wrapper.h"
+#include "wrapper/mysql_wrapper.h"
+//#include "mysql_driver.h"
+//#include "cppconn/variant.h"
 using namespace std;
 
 void print_error(const char* str)
@@ -10,39 +12,74 @@ void print_error(const char* str)
 
 void cpp_mysql_test()
 {
-	sql::Driver* driver = sql::mysql::get_mysql_driver_instance();
-	if (!driver)
-	{
-		print_error("get driver fail\n");
-		return;
-	}
-
-	sql::Connection* conn = driver->connect("localhost", "root", "");
+	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "hebei_center");
 	if (!conn)
 	{
 		print_error("conn fail");
 		return;
 	}
 
-	conn->setSchema("hebei_center");
-	sql::Statement* stmt = conn->createStatement();
-	sql::ResultSet* res = stmt->executeQuery("select count(*) from user");
-	if (!res)
+	M_SQL_TRY()
+		StatementScopedPtr stmt(conn->createStatement());
+		ResultSetScopedPtr res(stmt->executeQuery("select count(*) from user"));
+		
+		while (res->next())
+		{
+			cout << res->getInt("count(*)2") << endl;
+		}
+	M_SQL_EXCEPTION();
+}
+
+void cpp_mysql_test2()
+{
+	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "test");
+	if (!conn)
 	{
-		print_error("query fail\n");
+		print_error("conn fail");
 		return;
 	}
 
-	while (res->next())
+	M_SQL_TRY()
+		StatementScopedPtr stmt(conn->createStatement());
+		ResultSetScopedPtr res(stmt->executeQuery("select * from test"));
+		
+		while (res->next())
+		{
+			std::string value;
+			GetFieldWrapper(res.get(), "id", value);
+			cout << value << " " << res->getInt("age") << " " << res->getInt("headframe") << endl;
+		}
+	M_SQL_EXCEPTION();
+}
+
+void cpp_mysql_test3()
+{
+	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "test");
+	if (!conn)
 	{
-		cout << res->getInt(1) << endl;
+		print_error("conn fail");
+		return;
 	}
 
+	try
+	{
+		PreparedStatementScopedPtr pstmt(conn->prepareStatement("select * from test where age>=?"));
+		SetFieldWrapper(pstmt.get(), 1, 2);
+		ResultSetScopedPtr res(pstmt->executeQuery());
+
+		while (res->next())
+		{
+			std::string value;
+			GetFieldWrapper(res.get(), "id", value);
+			cout << value << " " << res->getInt("age") << " " << res->getInt("headframe") << endl;
+		}
+	}
+	M_MYSQL_CATCH_EXCEPTION;
 }
 
 int main()
 {
-	cpp_mysql_test();
+	cpp_mysql_test3();
 	return 0;
 }
 
