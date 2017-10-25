@@ -13,4 +13,8 @@
 #endif
 #endif
 
+#ifdef M_PLATFORM_WIN
+#pragma warning(disable:4251)
+#endif
+
 #endif

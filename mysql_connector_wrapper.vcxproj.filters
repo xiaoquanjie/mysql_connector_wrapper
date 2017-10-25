@@ -13,10 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="mysql-connector">
+      <UniqueIdentifier>{3d239da7-ab78-4c71-abb8-5e30635e12e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mysql-connector\wrapper">
+      <UniqueIdentifier>{f19fd592-d96f-4aa6-9f36-4bc509526bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mysql-connector\cppconn">
+      <UniqueIdentifier>{392e082b-e741-479f-ab75-77671a25db71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mysql-connector\wrapper\mysql_wrapper.h">
+      <Filter>mysql-connector\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\wrapper\mysql_wrapper_config.h">
+      <Filter>mysql-connector\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\wrapper\mysql_wrapper_mutex.hpp">
+      <Filter>mysql-connector\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\mysql_connection.h">
+      <Filter>mysql-connector</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\mysql_driver.h">
+      <Filter>mysql-connector</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\mysql_error.h">
+      <Filter>mysql-connector</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\build_config.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\config.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\connection.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\datatype.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\driver.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\exception.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\metadata.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\parameter_metadata.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\prepared_statement.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\resultset.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\resultset_metadata.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\sqlstring.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\statement.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\variant.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\version_info.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql-connector\cppconn\warning.h">
+      <Filter>mysql-connector\cppconn</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

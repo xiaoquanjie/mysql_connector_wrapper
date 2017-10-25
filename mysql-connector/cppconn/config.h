@@ -25,7 +25,7 @@
 // libmysql defines HAVE_STRTOUL (on win), so we have to follow different pattern in definitions names
 // to avoid annoying warnings.
 
-#include "mysql_wrapper_config.h"
+#include "wrapper/mysql_wrapper_config.h"
 
 #define HAVE_FUNCTION_STRTOLD 1
 #define HAVE_FUNCTION_STRTOLL 1
