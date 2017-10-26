@@ -4,7 +4,7 @@
 //#include "mysql_driver.h"
 //#include "cppconn/variant.h"
 using namespace std;
-
+  
 void print_error(const char* str)
 {
 	cout << str;
