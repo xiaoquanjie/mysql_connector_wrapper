@@ -12,7 +12,7 @@ void print_error(const char* str)
 
 void cpp_mysql_test()
 {
-	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "hebei_center");
+	SqlConnectionPtr conn = MysqlWrapper::GetConnect("localhost", "root", "", 0, "hebei_center");
 	if (!conn)
 	{
 		print_error("conn fail");
@@ -32,7 +32,7 @@ void cpp_mysql_test()
 
 void cpp_mysql_test2()
 {
-	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "test");
+	SqlConnectionPtr conn = MysqlWrapper::GetConnect("localhost", "root", "", 0, "test");
 	if (!conn)
 	{
 		print_error("conn fail");
@@ -54,7 +54,7 @@ void cpp_mysql_test2()
 
 void cpp_mysql_test3()
 {
-	SqlConnectionPtr conn = MyqlWrapper::GetConnect("localhost", "root", "", 0, "test");
+	SqlConnectionPtr conn = MysqlWrapper::GetConnect("localhost", "root", "", 0, "test");
 	if (!conn)
 	{
 		print_error("conn fail");
@@ -77,9 +77,19 @@ void cpp_mysql_test3()
 	M_MYSQL_CATCH_EXCEPTION;
 }
 
+void cpp_mysql_test4()
+{
+	sql::Driver* dri1 = MysqlWrapper::GetDriver();
+	sql::Driver* dri2 = MysqlWrapper::GetDriver();
+	if (dri2 == dri1)
+		cout << "yes" << endl;
+	else
+		cout << "no" << endl;
+}
+
 int main()
 {
-	cpp_mysql_test3();
+	cpp_mysql_test4();
 	return 0;
 }
 

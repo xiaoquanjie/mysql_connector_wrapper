@@ -60,16 +60,21 @@ template<int N>
 MysqlWrapperDetail::MutexLock MyqlWrapperBase<N>::_s_mutex;
 
 // 简单的包装类
-class MyqlWrapper : public MyqlWrapperBase<0>
+class MysqlWrapper : public MyqlWrapperBase<0>
 {
 public:
 	static sql::Driver* GetDriver()
 	{
-		// get_mysql_driver_instance is not thread-safe
+		// get_driver_instance_by_name is not thread-safe
 		MysqlWrapperDetail::ScopedLock scoped(_s_mutex);
-		M_SQL_TRY()
-			return sql::mysql::get_mysql_driver_instance();
-		M_SQL_EXCEPTION();
+		try
+		{
+			char id_str[10] = { 0 };
+			sprintf(id_str, "%d",get_cur_threadid());
+			return sql::mysql::get_driver_instance_by_name(id_str);
+		}
+		M_MYSQL_CATCH_EXCEPTION;
+
 		return 0;
 	}
 
@@ -122,9 +127,12 @@ public:
 		if (!driver)
 			return SqlConnectionPtr();
 
-		M_SQL_TRY()
+		try
+		{
 			return SqlConnectionPtr(driver->connect(options));
-		M_SQL_EXCEPTION();
+		}
+		M_MYSQL_CATCH_EXCEPTION;
+
 		return SqlConnectionPtr();
 	}
 };
